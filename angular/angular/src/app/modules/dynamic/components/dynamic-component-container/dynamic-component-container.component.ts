@@ -1,6 +1,7 @@
 // dynamic-component-container.component.ts
 import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 import { AppDynamicComponent } from '../dynamic/dynamic.component';
+import { AppDostComponent } from '../dost/dost.component';
 
 @Component({
   selector: 'app-dynamic-component-container',
@@ -8,22 +9,33 @@ import { AppDynamicComponent } from '../dynamic/dynamic.component';
 })
 export class DynamicComponentContainerComponent {
   @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
-
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
+  flag: boolean = true
+  constructor() {
+    console.log('app-dynamic-component-container')
+ 
+  }
+  ngAfterViewInit() {
+    console.log('这个执行了')
+    this.loadDynamicComponent()
+  }
 
   loadDynamicComponent() {
-    // 创建组件工厂
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(AppDynamicComponent);
+    this.changetest()
+  }
 
-    // 在容器中创建组件
-    this.container.clear();
-    const componentRef = this.container.createComponent(componentFactory);
-
-    // 可以设置组件的属性和订阅事件
-    const dynamicComponentInstance = componentRef.instance as AppDynamicComponent;
-    dynamicComponentInstance.data = 'Hello from dynamic component!';
-    dynamicComponentInstance.someEvent.subscribe((eventData: any) => {
-      console.log('Dynamic component event:', eventData);
-    });
+  changetest() {
+    this.flag = !this.flag
+    if (this.flag) {
+      this.container.clear()
+      console.log('创建一个')
+      const componentRef = this.container.createComponent<any>(AppDynamicComponent); 
+    } else {
+      this.container.clear()
+      console.log('创建一个')
+      const componentRef = this.container.createComponent<any>(AppDostComponent); 
+    }
+  }
+  ngDestroy() {
+    this.container && this.container.clear()
   }
 }
