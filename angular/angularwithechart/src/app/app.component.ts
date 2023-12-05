@@ -21,21 +21,21 @@ export class AppComponent {
     toolbox: {
         feature: {
             dataView: {
-              show: true,
+              show: false,
               readOnly: false,
               title: 'Datensicht'
             },
             magicType: {
-              show: true,
+              show: false,
               type: ['line', 'bar'],
               title: 'migic type'
             },
             restore: {
-              show: true,
+              show: false,
               title: 'Zurücksetzen'
             },
             saveAsImage: {
-              show: true,
+              show: false,
               title: 'Speichern'
             }
         }
@@ -56,12 +56,13 @@ export class AppComponent {
         {
             type: 'value',
             name: '水量',
-            min: 0,
-            max: 250,
-            interval: 50,
+            // min: 0,
+            // max: 250,
+            // interval: 50,
             axisLabel: {
                 formatter: '{value} ml'
-            }
+            },
+            scale: true
         },
         {
             type: 'value',
@@ -75,15 +76,16 @@ export class AppComponent {
         }
     ],
     series: [
-        {
-            name: '蒸发量',
-            type: 'bar',
-            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-        },
+        // {
+        //     name: '蒸发量',
+        //     type: 'bar',
+        //     data: [50, 61, 58, 58, 58, 58.7, 58.6, 58.2, 58.6, 58.0, 58.4, 58.3],
+        // },
         {
             name: '降水量',
             type: 'bar',
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+            data: [28.6, 28.9, 28.0, 28.4, 28.7, 28.7, 28.6, 28.2, 28.7, 28.8, 28.0, 28.3],
+            scale: true
         },
         {
             name: '平均温度',
