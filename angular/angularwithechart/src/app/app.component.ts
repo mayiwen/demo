@@ -91,7 +91,18 @@ export class AppComponent {
             name: '平均温度',
             type: 'line',
             yAxisIndex: 1,
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
+            symbol: function (value: any, params: any) {
+              console.log('这是value')
+              console.log(value)
+              console.log(params);
+              if (value == 2 || value == 6.2) {
+                  return 'circle'; //拐点类型
+              } else {
+                  return 'none'; //拐点不显示
+              }
+            }
+
         }
     ]
   }
