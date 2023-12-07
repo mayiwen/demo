@@ -18,7 +18,13 @@ export class AppComponent {
   }
   change() {
     console.log(this.chartOption.series[0].itemStyle.opacity)
-    this.chartOption.series[0].itemStyle.opacity = 0
+    if (this.chartOption.series[0].itemStyle.opacity === 0) {
+      this.chartOption.series[0].itemStyle.opacity = 1
+    } else
+    if (this.chartOption.series[0].itemStyle.opacity === 1) {
+      this.chartOption.series[0].itemStyle.opacity = 0
+
+    }
     console.log()
     console.log(this.echartsIntance)
     this.echartsIntance.setOption(this.chartOption);
