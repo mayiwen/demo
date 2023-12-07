@@ -16,6 +16,17 @@ export class AppComponent {
     console.log(arr.splice(startIndex, endIndex - startIndex))
     console.log(arr)
   }
+  change() {
+    console.log(this.chartOption.series[0].itemStyle.opacity)
+    this.chartOption.series[0].itemStyle.opacity = 0
+    console.log()
+    console.log(this.echartsIntance)
+    this.echartsIntance.setOption(this.chartOption);
+  }
+  echartsIntance: any
+  onChartInit(ec: any) {
+    this.echartsIntance = ec;
+  }
   chartOption: any = {
     tooltip: {
       trigger: 'axis',
@@ -110,7 +121,13 @@ export class AppComponent {
             name: '降水量',
             type: 'bar',
             data: [28.6, 28.9, 28.0, 28.4, 28.7, 28.7, 28.6, 28.2, 28.7, 28.8, 28.0, 28.3],
-            scale: true
+            scale: true,
+            labelLine: {
+              show: false
+            },
+            itemStyle: {
+              opacity: 1
+            }
         },
         {
             name: '平均温度',

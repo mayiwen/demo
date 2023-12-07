@@ -1,1 +1,2 @@
-<div echarts [options]="chartOption" class="demo-chart" style="height: 500px;"></div>
+<button (click)="change()">你好</button>
+<div echarts [options]="chartOption" class="demo-chart" style="height: 500px;" (chartInit)="onChartInit($event)"></div>
