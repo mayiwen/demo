@@ -21,9 +21,9 @@ export class AppComponent {
     { field: "mission", editable: true },
     { field: "company" },
     { field: "location" },
-    { field: "date" },
-    { field: "price" },
-    { field: "successful" },
+    { field: "date", editable: true  },
+    { field: "price", editable: true  },
+    { field: "successful", editable: true },
     { field: "rocket" },
     { field: "rocket1", pinned: 'right' },
   ]
