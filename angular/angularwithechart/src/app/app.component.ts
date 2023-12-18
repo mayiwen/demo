@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-echarts-example';
+  title = 'angular-echarts-example';  
   ngOnInit() {
     let arr = ['11:59:00', '12:00:00', '12:01:00', '12:02:00', '13:28:00', '13:29:00', '13:30:00']
     let startIndex =arr.findIndex(item => item === '12:01:00')
@@ -34,141 +34,66 @@ export class AppComponent {
     this.echartsIntance = ec;
   }
   chartOption: any = {
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-          type: 'cross',
-          crossStyle: {
-              color: '#999'
-          }
-      }
+    
+    title: {
+      text: 'Stacked Line'
     },
-    toolbox: {
+    tooltip: {
+      trigger: 'axis'
     },
     legend: {
-        data: ['蒸发量', '降水量', '平均温度', '222']
+      data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
     },
-    xAxis: [
-        {
-            type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            axisPointer: {
-                type: 'shadow'
-            }
-        },
-        {
-            type: 'category',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            axisPointer: {
-                type: 'shadow'
-            },
-            gridIndex:1
-
-        }
-    ],
-    grid:[
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    toolbox: {
+      feature: {
+        saveAsImage: {}
+      }
+    },
+    xAxis: {
+      type: 'category',
+      // boundaryGap: false,
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
       {
-        left: '10%',
-        right: '8%',
-        height: '50%'
+        name: 'Email',
+        type: 'line',
+        // stack: 'Total',
+        data: [120, 132, 101, 134, 90, 230, 210]
       },
       {
-        left: '10%',
-        right: '8%',
-        top: '63%',
-        height: '30%'
+        name: 'Union Ads',
+        type: 'line',
+        // stack: 'Total',
+        data: [220, 182, 191, 234, 290, 330, 310]
+      },
+      {
+        name: 'Video Ads',
+        type: 'line',
+        // stack: 'Total',
+        data: [150, 232, 201, 154, 190, 330, 410]
+      },
+      {
+        name: 'Direct',
+        type: 'line',
+        // stack: 'Total',
+        data: [320, 332, 301, 334, 390, 330, 320]
+      },
+      {
+        name: 'Search Engine',
+        type: 'line',
+        // stack: 'Total',
+        data: [820, 932, 901, 934, 1290, 1330, 1320]
       }
-
-    ],
-    // {
-    //   left: '10%',
-    //   right: '8%',
-    //   height: '50%'
-    // },
-    // {
-    //   left: '10%',
-    //   right: '8%',
-    //   top: '63%',
-    //   height: '16%'
-    // }
-    yAxis: [
-        {
-            type: 'value',
-            name: '水量',
-            axisLabel: {
-                formatter: '{value} ml'
-            },
-            scale: true
-        },
-        {
-        
-            type: 'value',
-            name: '温度',
-            axisLabel: {
-                formatter: '{value} °Css'
-            }
-        },
-        {
-          gridIndex: 1,
-            type: 'value',
-            name: '222',
-            axisLabel: {
-                formatter: '{value} °C'
-            }
-        }
-    ],
-    series: [
-        // {
-        //     name: '蒸发量',
-        //     type: 'bar',
-        //     data: [50, 61, 58, 58, 58, 58.7, 58.6, 58.2, 58.6, 58.0, 58.4, 58.3],
-        // },
-        {
-            name: '降水量',
-            type: 'bar',
-            data: [28.6, 28.9, 28.0, 28.4, 28.7, 28.7, 28.6, 28.2, 28.7, 28.8, 28.0, 28.3],
-            scale: true,
-            labelLine: {
-              show: false
-            },
-            itemStyle: {
-              opacity: 1
-            }
-        },
-        {
-            name: '平均温度',
-            type: 'line',
-            yAxisIndex: 1,
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2],
-            symbol: function (value: any, params: any) {
-              // console.log('这是value')
-              // console.log(value)
-              // console.log(params);
-              if (value == 2 || value == 6.2) {
-                  return 'circle'; //拐点类型
-              } else {
-                  return 'none'; //拐点不显示
-              }
-            }
-
-        },
-        // {
-        //     name: '222',
-        //     type: 'line',
-        //     yAxisIndex: 1,
-        //     data: [20, 22, 33, 45, 63, 102, 203, 234, 100, 165, 120, 62],
-        //     symbol: function (value: any, params: any) {
-        //       console.log('这是value')
-        //       console.log(value)
-        //       console.log(params);
-        //       if (value == 2 || value == 6.2) {
-        //           return 'circle'; //拐点类型
-        //       } else {
-        //           return 'none'; //拐点不显示
-        //       }
-        //     }
-
-        // }
     ]
   }
 
